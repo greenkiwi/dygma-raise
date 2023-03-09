@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main, "v.*"]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: [general-ubuntu]
+    steps:
+      - uses: open-turo/actions-tf/lint@v3
+        with:
+          terraform-cli-credentials-token: ${{ secrets.TERRAFORM_ENTERPRISE_ATLAS_TOKEN }}
+        env:
+          NEW_RELIC_API_KEY: ${{ secrets.NEW_RELIC_TEST_API_KEY }}
+  test:
+    name: Test
+    needs: [lint]
+    runs-on: [general-ubuntu]
+    steps:
+      - name: Inject sensitive environment variables (optional)
+        run: |
+          # secrets.ENV_TEST_VARS is a specially created and formatted GitHub Actions
+          # secret that when properly formed causes environment variables with sensitive
+          # values to be made available for all of the remaining steps within this Test
+          # job at runtime. It can house one to many secret values within it. It is
+          # formatted such that each line within the secret's value is of the form
+          # secretKey=clearTextValue
+          # Each key value pair must be presented on a single line by itself.
+          #
+          # This special secret is only needed when this job needs additional
+          # environment variables that are specific to the derived repository.
+          # Please read the .github/workflows/README.md in the derived repository
+          # for instructions on creating/updating this secret.
+          echo '${{ secrets.ENV_TEST_VARS }}' | while read -r line; do
+            if [[ -z "$line" ]]; then continue; fi
+            # Use add-mask to hide the actual clear text value of the secret,
+            # in case its value is attempted to be reported in a log entry.
+            echo "::add-mask::${line#*=}"
+            # shellcheck disable=SC2086
+            echo "$line" >> $GITHUB_ENV
+          done
+      - uses: open-turo/actions-tf/test@v3
+        with:
+          terraform-cli-credentials-token: ${{ secrets.TERRAFORM_ENTERPRISE_ATLAS_TOKEN }}
+          aws-access-key-id: ${{ secrets.TERRAFORM_TURO_TESTS_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.TERRAFORM_TURO_TESTS_AWS_SECRET_ACCESS_KEY }}
+        env:
+          NEW_RELIC_API_KEY: ${{ secrets.NEW_RELIC_TEST_API_KEY }}

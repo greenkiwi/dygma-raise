@@ -1,0 +1,32 @@
+name: Release
+
+on:
+  push:
+    branches: [main, "v.*"]
+  workflow_dispatch: # enable manual release
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: [general-ubuntu]
+    steps:
+      - uses: open-turo/actions-tf/lint@v3
+        with:
+          terraform-cli-credentials-token: ${{ secrets.TERRAFORM_ENTERPRISE_ATLAS_TOKEN }}
+        env:
+          NEW_RELIC_API_KEY: ${{ secrets.NEW_RELIC_TEST_API_KEY }}
+
+  release:
+    name: Release
+    needs: [lint]
+    runs-on: [general-ubuntu]
+    env:
+      FOTINGO_JIRA_ROOT: ${{ secrets.FOTINGO_JIRA_ROOT }}
+      FOTINGO_JIRA_USER_TOKEN: ${{ secrets.FOTINGO_JIRA_USER_TOKEN }}
+      FOTINGO_JIRA_USER_LOGIN: ${{ secrets.FOTINGO_JIRA_USER_LOGIN }}
+    steps:
+      - uses: open-turo/actions-tf/release@v3
+        with:
+          extra-plugins: |
+            @open-turo/semantic-release-config
+          github-token: ${{ secrets.TURO_GITHUB_TOKEN }}
