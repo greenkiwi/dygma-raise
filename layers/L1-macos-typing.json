@@ -107,10 +107,9 @@
       "label": "="
     },
     {
-      "keyCode": 0,
-      "label": "KEY",
-      "extraLabel": "NO",
-      "verbose": "Disabled"
+      "keyCode": 42,
+      "label": "BACKSPACE",
+      "verbose": "Backspace"
     },
     {
       "keyCode": 43,
@@ -322,9 +321,10 @@
       "label": "/"
     },
     {
-      "keyCode": 49507,
-      "label": "↑",
-      "extraLabel": "SHIFT/"
+      "keyCode": 229,
+      "label": "SHIFT",
+      "extraLabel": "RIGHT",
+      "verbose": "Right Shift"
     },
     {
       "keyCode": 49168,
@@ -358,9 +358,10 @@
       "verbose": "Disabled"
     },
     {
-      "keyCode": 42,
-      "label": "BACKSPACE",
-      "verbose": "Backspace"
+      "keyCode": 224,
+      "label": "CTRL",
+      "extraLabel": "LEFT",
+      "verbose": "Left Control"
     },
     {
       "keyCode": 4140,
@@ -372,6 +373,11 @@
       "label": "ENTER"
     },
     {
+      "keyCode": 231,
+      "label": "RIGHT ⌘",
+      "verbose": "Right Command"
+    },
+    {
       "keyCode": 49162,
       "label": "2",
       "extraLabel": "OSL"
@@ -380,11 +386,6 @@
       "keyCode": 42,
       "label": "BACKSPACE",
       "verbose": "Backspace"
-    },
-    {
-      "keyCode": 231,
-      "label": "RIGHT ⌘",
-      "verbose": "Right Command"
     },
     {
       "keyCode": 230,
@@ -439,7 +440,7 @@
     1,
     2,
     8,
-    13,
+    0,
     4,
     4,
     4,
@@ -461,7 +462,7 @@
     4,
     4,
     4,
-    12,
+    4,
     4,
     4,
     4,
@@ -471,9 +472,9 @@
     12,
     12,
     8,
-    3,
-    5,
     0,
+    5,
+    3,
     8,
     8,
     8,
@@ -631,10 +632,10 @@
       "rgb": "rgb(0, 0, 0)"
     },
     {
-      "r": 0,
-      "g": 0,
+      "r": 90,
+      "g": 252,
       "b": 0,
-      "rgb": "rgb(0, 0, 0)"
+      "rgb": "rgb(90, 252, 0)"
     }
   ]
 }
