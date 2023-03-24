@@ -369,8 +369,9 @@
       "extraLabel": "G+"
     },
     {
-      "keyCode": 40,
-      "label": "ENTER"
+      "keyCode": 49162,
+      "label": "2",
+      "extraLabel": "OSL"
     },
     {
       "keyCode": 231,
@@ -378,9 +379,8 @@
       "verbose": "Right Command"
     },
     {
-      "keyCode": 49162,
-      "label": "2",
-      "extraLabel": "OSL"
+      "keyCode": 40,
+      "label": "ENTER"
     },
     {
       "keyCode": 42,
@@ -473,9 +473,9 @@
     12,
     8,
     0,
-    5,
     3,
-    8,
+    3,
+    6,
     8,
     8,
     8,

@@ -219,9 +219,9 @@
       "extraLabel": "G+"
     },
     {
-      "keyCode": 2274,
-      "label": "LEFT ⌥",
-      "extraLabel": "S+"
+      "keyCode": 737,
+      "label": "SHIFT",
+      "extraLabel": "A+"
     },
     {
       "keyCode": 80,
@@ -424,8 +424,10 @@
       "extraLabel": "G+"
     },
     {
-      "keyCode": 40,
-      "label": "ENTER"
+      "keyCode": 65535,
+      "label": "",
+      "extraLabel": "TRANS",
+      "verbose": "Transparent"
     },
     {
       "keyCode": 231,
@@ -433,10 +435,8 @@
       "verbose": "Right Command"
     },
     {
-      "keyCode": 65535,
-      "label": "",
-      "extraLabel": "TRANS",
-      "verbose": "Transparent"
+      "keyCode": 40,
+      "label": "ENTER"
     },
     {
       "keyCode": 42,
